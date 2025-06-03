@@ -3,6 +3,9 @@ spring:
     name: actuator
 
 management:
+  server:
+    port: 8080
+    base-path: /actuator
   info:
     java:
       enabled: true
