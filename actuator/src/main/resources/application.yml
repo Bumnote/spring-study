@@ -38,3 +38,8 @@ info:
 logging:
   level:
    study.actuator.controller: debug
+
+server:
+  tomcat:
+    mbeanregistry:
+      enabled: true
