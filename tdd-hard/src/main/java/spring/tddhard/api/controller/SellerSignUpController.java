@@ -24,6 +24,7 @@ public record SellerSignUpController(SellerRepository sellerRepository) {
 
     var seller = new Seller();
     seller.setEmail(command.email());
+    seller.setUsername(command.username());
 
     try {
       sellerRepository.save(seller);
