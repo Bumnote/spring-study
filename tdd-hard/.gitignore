@@ -38,3 +38,5 @@ out/
 
 ### Custom ###
 .gitattributes
+gradlew
+gradlew.bat
