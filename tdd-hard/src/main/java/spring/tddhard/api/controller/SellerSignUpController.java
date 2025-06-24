@@ -12,6 +12,7 @@ public record SellerSignUpController() {
   @PostMapping("/seller/signUp")
   ResponseEntity<Void> signUp(@RequestBody CreateSellerCommand command) {
     String emailRegex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
+    String usernameRegex = "^[a-z]*$";
 
     if (command.email() == null) {
       return ResponseEntity.badRequest().build();
@@ -21,10 +22,16 @@ public record SellerSignUpController() {
       return ResponseEntity.badRequest().build();
     } else if (command.email().matches(emailRegex) == false) {
       return ResponseEntity.badRequest().build();
+    } else if (command.username() == null) {
+      return ResponseEntity.badRequest().build();
+    } else if (command.username().isBlank()) {
+      return ResponseEntity.badRequest().build();
+    } else if (command.username().length() < 3) {
+      return ResponseEntity.badRequest().build();
+    } else if (command.username().matches(usernameRegex) == false) {
+      return ResponseEntity.badRequest().build();
     } else {
       return ResponseEntity.noContent().build();
     }
   }
-
-
 }
