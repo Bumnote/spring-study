@@ -12,7 +12,7 @@ public record SellerSignUpController() {
   @PostMapping("/seller/signUp")
   ResponseEntity<Void> signUp(@RequestBody CreateSellerCommand command) {
     String emailRegex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
-    String usernameRegex = "^[a-z]*$";
+    String usernameRegex = "^[a-zA-Z0-9_-]*$";
 
     if (command.email() == null) {
       return ResponseEntity.badRequest().build();
