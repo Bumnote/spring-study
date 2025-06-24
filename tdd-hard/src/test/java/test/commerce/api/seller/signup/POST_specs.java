@@ -180,4 +180,56 @@ class POST_specs {
     // then
     assertThat(response.getStatusCode().value()).isEqualTo(204);
   }
+
+  @Test
+  void password_속성이_지정되지_않으면_400_Bad_Request_상태코드를_반환한다(
+      @Autowired TestRestTemplate client
+  ) {
+
+    // given
+    var command = new CreateSellerCommand(
+        "seller@test.com",
+        "seller",
+        null
+    );
+
+    // when
+    ResponseEntity<Void> response = client.postForEntity(
+        "/seller/signUp",
+        command,
+        Void.class
+    );
+
+    // then
+    assertThat(response.getStatusCode().value()).isEqualTo(400);
+  }
+
+  @ParameterizedTest
+  @ValueSource(strings = {
+      "",
+      "pass", 
+      "pass123"
+  })
+  void password_속성이_올바른_형식을_따르지_않으면_400_Bad_Request_상태코드를_반환한다(
+      String password,
+      @Autowired TestRestTemplate client
+  ) {
+
+    // given
+    var command = new CreateSellerCommand(
+        "seller@test.com",
+        "seller",
+        password
+    );
+
+    // when
+    ResponseEntity<Void> response = client.postForEntity(
+        "/seller/signUp",
+        command,
+        Void.class
+    );
+
+    // then
+    assertThat(response.getStatusCode().value()).isEqualTo(400);
+  }
 }
