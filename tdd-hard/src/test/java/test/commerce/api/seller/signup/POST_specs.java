@@ -2,6 +2,7 @@ package test.commerce.api.seller.signup;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static test.commerce.EmailGenerator.generateEmail;
+import static test.commerce.PasswordGenerator.generatePassword;
 import static test.commerce.UsernameGenerator.generateUsername;
 
 import org.junit.jupiter.api.DisplayName;
@@ -12,7 +13,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import spring.tddhard.CommerceApiApp;
+import spring.tddhard.Seller;
+import spring.tddhard.SellerRepository;
 import spring.tddhard.commerce.CreateSellerCommand;
 
 @SpringBootTest(
@@ -280,5 +284,35 @@ class POST_specs {
 
     // then
     assertThat(response.getStatusCode().value()).isEqualTo(400);
+  }
+
+  @Test
+  void 비밀번호를_올바르게_암호화한다(
+      @Autowired TestRestTemplate client,
+      @Autowired SellerRepository repository,
+      @Autowired PasswordEncoder encoder
+  ) {
+
+    // given
+    var command = new CreateSellerCommand(
+        generateEmail(),
+        generateUsername(),
+        generatePassword()
+    );
+
+    // when
+    client.postForEntity("/seller/signUp", command, Void.class);
+
+    // then
+    Seller seller = repository.findAll()
+        .stream()
+        .filter(x -> x.getEmail().equals(generateEmail()))
+        .findFirst()
+        .orElseThrow();
+
+    String actual = seller.getHashedPassword();
+    assertThat(actual)
+        .isNotNull()
+        .isEqualTo(encoder.encode(command.password()));
   }
 }

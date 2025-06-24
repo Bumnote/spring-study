@@ -23,4 +23,7 @@ public class Seller {
   @Column(unique = true)
   private String username;
 
+  @Column(length = 1_000)
+  private String hashedPassword;
+
 }
