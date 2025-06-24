@@ -207,7 +207,7 @@ class POST_specs {
   @ParameterizedTest
   @ValueSource(strings = {
       "",
-      "pass", 
+      "pass",
       "pass123"
   })
   void password_속성이_올바른_형식을_따르지_않으면_400_Bad_Request_상태코드를_반환한다(
@@ -226,6 +226,29 @@ class POST_specs {
     ResponseEntity<Void> response = client.postForEntity(
         "/seller/signUp",
         command,
+        Void.class
+    );
+
+    // then
+    assertThat(response.getStatusCode().value()).isEqualTo(400);
+  }
+
+  @Test
+  void email_속성이_이미_존재하는_이메일_주소가_지정되면_400_Bad_Request_상태코드를_반환한다(
+      @Autowired TestRestTemplate client
+  ) {
+
+    // given
+    String email = "seller@test.com";
+    client.postForEntity(
+        "/seller/signUp",
+        new CreateSellerCommand(email, "seller", "password"),
+        Void.class);
+
+    // when
+    ResponseEntity<Void> response = client.postForEntity(
+        "/seller/signUp",
+        new CreateSellerCommand(email, "seller", "password"),
         Void.class
     );
 

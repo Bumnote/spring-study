@@ -30,12 +30,12 @@ Content-Type : application/json
 
 - Body
 
-```json
+```bash
 CreateSellerCommand {
-  email: String,
-  username: String,
-  password: String
-}  
+  "email": String,
+  "username": String,
+  "password": String
+}
 ```
 
 - curl 명령 예시
