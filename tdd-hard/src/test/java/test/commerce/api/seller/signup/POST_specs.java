@@ -4,6 +4,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
@@ -49,6 +51,36 @@ class POST_specs {
     // given
     var command = new CreateSellerCommand(
         null,
+        "seller",
+        "password"
+    );
+
+    // when
+    ResponseEntity<Void> response = client.postForEntity(
+        "/seller/signUp",
+        command,
+        Void.class);
+
+    // then
+    assertThat(response.getStatusCode().value()).isEqualTo(400);
+  }
+
+  @ParameterizedTest
+  @ValueSource(strings = {
+      "invalid-email",
+      "invalid-email@",
+      "invalid-email@test",
+      "invalid-email@test.",
+      "invalid-email@.com",
+  })
+  void email_속성이_올바른_형식을_따르지_않으면_400_Bad_Request_상태코드를_반환한다(
+      String email,
+      @Autowired TestRestTemplate client
+  ) {
+
+    // given
+    var command = new CreateSellerCommand(
+        email,
         "seller",
         "password"
     );
