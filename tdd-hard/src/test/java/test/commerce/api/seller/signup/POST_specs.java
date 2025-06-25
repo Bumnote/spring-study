@@ -304,15 +304,15 @@ class POST_specs {
     client.postForEntity("/seller/signUp", command, Void.class);
 
     // then
-    Seller seller = repository.findAll()
+    Seller seller = repository
+        .findAll()
         .stream()
-        .filter(x -> x.getEmail().equals(generateEmail()))
+        .filter(x -> x.getEmail().equals(command.email()))
         .findFirst()
         .orElseThrow();
 
     String actual = seller.getHashedPassword();
-    assertThat(actual)
-        .isNotNull()
-        .isEqualTo(encoder.encode(command.password()));
+    assertThat(actual).isNotNull();
+    assertThat(encoder.matches(command.password(), actual)).isTrue();
   }
 }

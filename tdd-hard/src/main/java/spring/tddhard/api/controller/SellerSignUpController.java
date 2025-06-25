@@ -2,6 +2,7 @@ package spring.tddhard.api.controller;
 
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,7 +11,10 @@ import spring.tddhard.SellerRepository;
 import spring.tddhard.commerce.CreateSellerCommand;
 
 @RestController
-public record SellerSignUpController(SellerRepository sellerRepository) {
+public record SellerSignUpController(
+    PasswordEncoder passwordEncoder,
+    SellerRepository sellerRepository
+) {
 
   public static final String EMAIL_REGEX = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
   public static final String USERNAME_REGEX = "^[a-zA-Z0-9_-]{3,}$";
@@ -25,6 +29,7 @@ public record SellerSignUpController(SellerRepository sellerRepository) {
     var seller = new Seller();
     seller.setEmail(command.email());
     seller.setUsername(command.username());
+    seller.setHashedPassword(passwordEncoder.encode(command.password()));
 
     try {
       sellerRepository.save(seller);
