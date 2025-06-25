@@ -41,7 +41,7 @@ CreateSellerCommand {
 - curl 명령 예시
 
 ```bash 
-curl -X POST http://localhost:8080/seller/signUp \
+curl -i -X POST http://localhost:8080/seller/signUp \
 -H "Content-Type: application/json" \
 -d '{
   "email": "seller1@example.com",
@@ -73,4 +73,4 @@ curl -X POST http://localhost:8080/seller/signUp \
 - [x] password 속성이 올바른 형식을 따르지 않으면 400 Bad Request 상태코드를 반환한다.
 - [x] email 속성이 이미 존재하는 이메일 주소가 지정되면 400 Bad Request 상태코드를 반환한다.
 - [x] username 속성이 이미 존재하는 사용자 이름이 지정되면 400 Bad Request 상태코드를 반환한다.
-- [ ] 비밀번호를 올바르게 암호화한다.
+- [x] 비밀번호를 올바르게 암호화한다.
