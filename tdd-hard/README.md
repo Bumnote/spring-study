@@ -74,3 +74,43 @@ curl -i -X POST http://localhost:8080/seller/signUp \
 - [x] email 속성이 이미 존재하는 이메일 주소가 지정되면 400 Bad Request 상태코드를 반환한다.
 - [x] username 속성이 이미 존재하는 사용자 이름이 지정되면 400 Bad Request 상태코드를 반환한다.
 - [x] 비밀번호를 올바르게 암호화한다.
+
+### 판매자 접근 토큰 발행
+
+요청
+
+- 메서드: POST
+- 경로: /seller/issueToken
+- 본문
+  ```
+  IssueSellerToken {
+    email: string,
+    password: string
+  }
+  ```
+- curl 명령 예시
+  ```bash
+  curl -i -X POST 'http://localhost:8080/seller/issueToken' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "email": "seller1@example.com",
+    "password": "seller1-password"
+  }'
+  ```
+
+성공 응답
+
+- 상태코드: 200 OK
+
+  본문
+  ```
+  AccessTokenCarrier {
+    accessToken: string
+  }
+  ```
+
+- [x] 올바르게 요청하면 200 OK 상태코드를 반환한다.
+- [x] 올바르게 요청하면 접근 토큰을 반환한다.
+- [ ] 접근 토큰은 JWT 형식을 따른다.
+- [ ] 존재하지 않는 이메일 주소가 사용되면 400 Bad Request 상태코드를 반환한다.
+- [ ] 잘못된 비밀번호가 사용되면 400 Bad Request 상태코드를 반환한다.
