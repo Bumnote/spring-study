@@ -1,0 +1,13 @@
+type Mutation {
+
+    addUser(addUserInput: AddUserInput!): User!
+
+    addProduct(addProductInput: AddProductInput!): Product!
+
+    # 유저 장바구니 추가
+    addCartItem(addCartItemInput: AddCartItemInput!): Cart!
+
+    # 유저 장바구니 삭제
+    deleteCartItem(deleteCartItemInput: DeleteCartItemInput!): Cart!
+
+}

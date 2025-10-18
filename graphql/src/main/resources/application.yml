@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: graphql
+  graphql:
+    schema:
+      file-extensions: graphql
+
+server:
+  port: 8081

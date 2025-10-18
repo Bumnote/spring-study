@@ -20,14 +20,25 @@ repositories {
 }
 
 dependencies {
-    implementation("org.springframework.boot:spring-boot-starter-graphql")
+
+    // Web
     implementation("org.springframework.boot:spring-boot-starter-web")
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+
+    // GraphQL
+    implementation("org.springframework.boot:spring-boot-starter-graphql")
+
+    // Kotlin
     implementation("org.jetbrains.kotlin:kotlin-reflect")
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+
+    // Test
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
     testImplementation("org.springframework.graphql:spring-graphql-test")
-    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
+
+    // Etc
+    implementation("com.graphql-java:graphql-java-extended-scalars:22.0")
 }
 
 kotlin {

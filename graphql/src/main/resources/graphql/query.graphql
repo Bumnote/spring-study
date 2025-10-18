@@ -1,0 +1,17 @@
+type Query {
+    
+    # 유저 정보 
+    getUser(userId: ID!): User!
+
+    # 상품 목록 
+    getProducts: [Product!]!
+
+    # 유저 장바구니 정보 
+    getUserCart(userId: ID!): Cart!
+
+    # 키워드 검색 
+    search(keyword: String!): [SearchResult!]!
+
+}
+
+union SearchResult = User | Electronics | Clothing
