@@ -39,6 +39,9 @@ dependencies {
 
     // Etc
     implementation("com.graphql-java:graphql-java-extended-scalars:22.0")
+
+    // WebSocket
+    implementation("org.springframework.boot:spring-boot-starter-websocket")
 }
 
 kotlin {
