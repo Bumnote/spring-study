@@ -1,6 +1,8 @@
 package com.graphql.entity.product
 
-interface Product {
+import com.graphql.entity.search.SearchResult
+
+interface Product : SearchResult {
     val id: String
     val name: String
     val price: Double
