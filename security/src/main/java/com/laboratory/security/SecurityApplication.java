@@ -1,4 +1,4 @@
-package spring.security;
+package com.laboratory.security;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
