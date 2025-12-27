@@ -1,14 +1,19 @@
 package com.laboratory.security.controller;
 
+import com.laboratory.security.domain.model.User;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
-@RestController
+@Controller
 public class HomeController {
 
-  @GetMapping(value = {"", "/"})
-  public String index() {
-    return "Hello Spring Security";
+  @GetMapping("/home")
+  public ModelAndView home(@AuthenticationPrincipal User user) {
+    var modelAndView = new ModelAndView("home");
+    modelAndView.addObject("username", user.getUsername());
+    return modelAndView;
   }
 
 }
