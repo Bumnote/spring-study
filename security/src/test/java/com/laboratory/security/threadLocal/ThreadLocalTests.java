@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.util.concurrent.CompletableFuture;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.security.authentication.TestingAuthenticationToken;
 import org.springframework.security.core.context.SecurityContext;
@@ -12,6 +13,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 
 class ThreadLocalTests {
 
+  @DisplayName("ThreadLocal 방식의 SecurityContextHolder 테스트")
   @Test
   void security_from_other_thread_is_null() throws InterruptedException {
 
@@ -41,6 +43,7 @@ class ThreadLocalTests {
     assertNull(contextArray[0].getAuthentication());
   }
 
+  @DisplayName("InheritableThreadLocal 방식의 SecurityContextHolder 테스트")
   @Test
   void security_context_is_same_in_inheritable_thread_local_mode() throws InterruptedException {
 
@@ -72,6 +75,7 @@ class ThreadLocalTests {
     assertEquals(testingToken, contextArray[0].getAuthentication());
   }
 
+  @DisplayName("InheritableThreadLocal 방식의 SecurityContextHolder와 CompletableFuture 테스트")
   @Test
   void security_context_is_null_when_completable_future_in_inheritable_thread_local_mode() {
 
@@ -101,6 +105,7 @@ class ThreadLocalTests {
     assertNull(contextArray[0].getAuthentication());
   }
 
+  @DisplayName("Global 방식의 SecurityContextHolder 테스트")
   @Test
   void security_context_is_same_from_global() throws InterruptedException {
 
