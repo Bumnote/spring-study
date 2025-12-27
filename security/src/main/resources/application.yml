@@ -1,3 +1,17 @@
 spring:
   application:
     name: security
+  # Thymeleaf template configuration
+  thymeleaf:
+    prefix: classpath:templates/
+    suffix: .html
+  # Database configuration
+  datasource:
+    url: jdbc:h2:mem:test
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  # H2 database console configuration
+  h2:
+    console:
+      enabled: true
