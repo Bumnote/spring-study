@@ -39,6 +39,9 @@ dependencies {
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'
+
+    // Encoding
+    implementation 'org.bouncycastle:bcprov-jdk18on:1.77'
 }
 
 tasks.named('test') {
