@@ -17,48 +17,18 @@ public class AppConfig {
   }
 
   @Bean
-  public UserDetailsService inMemoryUserDetailsService(PasswordEncoder
-      passwordEncoder) {
-    var password = passwordEncoder.encode("123");
-    var manager = new InMemoryUserDetailsManager();
-    /* [1] junhyunny 사용자 */
-    manager.createUser(
+  public UserDetailsService userDetailsService() {
+
+    var userDetailsService = new InMemoryUserDetailsManager();
+    /* 사용자 정보 준비 */
+    userDetailsService.createUser(
         User.builder()
             .username("junhyunny")
-            .password(password)
-            .roles("ADMIN")
-            .build()
-    );
-
-    /* [2] tangerine 사용자 */
-    manager.createUser(
-        User.builder()
-            .username("tangerine")
-            .password(password)
-            .roles("MANAGER")
-            .build()
-    );
-
-    /* [3] jua 사용자 */
-    manager.createUser(
-        User.builder()
-            .username("jua")
-            .password(password)
+            .password(passwordEncoder().encode("12345"))
             .roles("EMPLOYEE")
-            .authorities("MANAGEMENT::WRITE")
             .build()
     );
 
-    /* [4] tory 사용자 */
-    manager.createUser(
-        User.builder()
-            .username("tory")
-            .password(password)
-            .roles("EMPLOYEE")
-            .authorities("MANAGEMENT::READ")
-            .build()
-    );
-
-    return manager;
+    return userDetailsService;
   }
 }
