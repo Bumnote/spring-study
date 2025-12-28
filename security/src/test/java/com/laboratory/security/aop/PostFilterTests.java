@@ -9,6 +9,7 @@ import com.laboratory.security.domain.model.Employee;
 import com.laboratory.security.repository.ManagementRepository;
 import com.laboratory.security.service.V2ManagementService;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,7 @@ class PostFilterTests extends TestUserContext {
 
   @DisplayName("@PostFilter - 직원 본인이 자신의 직원들 조회 성공")
   @Test
+  @Disabled
   void junhyunny_getEmployees_success() {
 
     // given

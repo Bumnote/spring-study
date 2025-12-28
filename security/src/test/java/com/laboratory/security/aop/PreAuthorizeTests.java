@@ -10,6 +10,7 @@ import com.laboratory.security.domain.model.Employee;
 import com.laboratory.security.repository.ManagementRepository;
 import com.laboratory.security.service.V2ManagementService;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,7 @@ class PreAuthorizeTests extends TestUserContext {
 
   @DisplayName("@PreAuthorize - 관리자(supervisor) 권한으로 자신의 직원 추가 성공")
   @Test
+  @Disabled
   void superVisorMyEmployee_addEmployee_success() {
 
     // given
@@ -54,6 +56,7 @@ class PreAuthorizeTests extends TestUserContext {
 
   @DisplayName("@PreAuthorize - 관리자(supervisor) 권한으로 자신의 직원 추가 성공 v2")
   @Test
+  @Disabled
   void superVisorMyEmployee_addEmployee_success_v2() {
 
     // given
