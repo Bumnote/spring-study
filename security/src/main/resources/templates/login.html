@@ -7,24 +7,29 @@
 </head>
 <body>
 <h1>Login</h1>
-<!-- [1] 로그인 폼 -->
-<form method="post" action="/login/processing">
+<form method="post" action="/login">
   <label>
     username
-    <!-- [2] 사용자 이름, 비밀번호 입력 -->
     <input type="text" name="username">
   </label>
   <label>
     password
     <input type="password" name="password">
   </label>
-  <!-- [3] 제출 버튼 -->
-  <input type="submit" value="login"/>
+  <div>
+    <label>
+      <!-- [1] 리멤버-미 요청 체크 박스 -->
+      <input type="checkbox" name="remember-me">
+      자동 로그인
+    </label>
+  </div>
+  <div>
+    <input type="submit" value="login"/>
+  </div>
 </form>
 <div>
-  <a href="/signup">signup</a>
-  <!-- 에러 메시지를 출력 -->
-  <p style="color: red" th:if="${errorMessage != null}" th:text="${errorMessage}"></p>
+  <!-- [2] 메인 화면 링크 -->
+  <a href="/">메인 화면</a>
 </div>
 </body>
 </html>

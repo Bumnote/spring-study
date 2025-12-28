@@ -8,10 +8,26 @@
 <body>
 <h1>Home</h1>
 <div>
-  <!-- [1] 사용자 이름 -->
   <p th:text="${username}"></p>
-  <!-- [2] 로그아웃 버튼 -->
-  <a href="/logout/processing">logout</a>
+  <div id="countdown">60초 뒤에 로그아웃 됩니다.</div>
+  <a href="/logout">logout</a>
 </div>
 </body>
+<script>
+  let sessionTime = 61
+  const countdown = document.getElementById('countdown')
+  /* [1] 인터벌 설정 */
+  setInterval(function () {
+    sessionTime--;
+    countdown.innerHTML = sessionTime + '초 뒤에 로그아웃 됩니다.'
+    if (sessionTime === 0) {
+      /* [2] 메인 페이지 리다이렉트 */
+      moveMainPage()
+    }
+  }, 1000)
+
+  function moveMainPage() {
+    window.location.href = '/'
+  }
+</script>
 </html>

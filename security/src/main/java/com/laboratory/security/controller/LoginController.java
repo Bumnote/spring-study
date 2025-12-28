@@ -7,7 +7,6 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class LoginController {
@@ -16,10 +15,8 @@ public class LoginController {
   private final static String DEFAULT_ERROR_MESSAGE = "사용자 정보가 유효하지 않습니다.";
 
   @GetMapping("/login")
-  public ModelAndView login(HttpServletRequest servletRequest) {
-    var modelAndView = new ModelAndView("login");
-    modelAndView.addObject("errorMessage", errorMessage(servletRequest));
-    return modelAndView;
+  public String login() {
+    return "login";
   }
 
   private String errorMessage(HttpServletRequest servletRequest) {
