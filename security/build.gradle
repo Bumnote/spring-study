@@ -45,6 +45,9 @@ dependencies {
     // H2 Database
     runtimeOnly 'com.h2database:h2'
 
+    // JDBC
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+
     // Test
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
