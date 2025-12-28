@@ -1,7 +1,5 @@
 package com.laboratory.security.config;
 
-import static org.springframework.http.HttpMethod.GET;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
@@ -19,11 +17,14 @@ public class SecurityConfig {
 
     httpSecurity.authorizeHttpRequests(
         registry -> registry
-            .requestMatchers(GET, "/users")
-            .hasAnyRole("USER", "ADMIN")
-            .anyRequest().authenticated()
-            .requestMatchers("/users")
-            .hasRole("ADMIN")
+            /* [1] 인증된 사용자만 허용 */
+            .requestMatchers("/a").authenticated()
+            /* [2] 리멤버-미 사용자만 허용 */
+            .requestMatchers("/b").rememberMe()
+            /* [3] 익명 사용자만 허용 */
+            .requestMatchers("/c").anonymous()
+            /* [4] 완전 인증된 사용자만 허용 */
+            .requestMatchers("/d").fullyAuthenticated()
     );
 
     httpSecurity.formLogin(
