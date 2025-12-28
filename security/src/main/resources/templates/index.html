@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<header>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</header>
+<body>
+<div>
+  <div> <!-- [1] 현재 로그인한 사용자 정보 확인 -->
+    <p th:text="${username}"/>
+    <p th:text="${role}"/>
+  </div>
+  <div>
+    <form action="/users" method="post">
+      <label for="role">
+        역할
+        <select name="role" id="role">
+          <!-- [2] 사용자 역할을 변경할 수 있는 폼 -->
+          <option th:selected="${role} == 'ROLE_ADMIN'" value="ROLE_ADMIN">
+            ADMIN
+          </option>
+          <option th:selected="${role} == 'ROLE_MANAGER'" value="ROLE_MANAGER">
+            MANAGER
+          </option>
+          <option th:selected="${role} == 'ROLE_USER'" value="ROLE_USER">
+            USER
+          </option>
+        </select>
+      </label>
+      <button>변경</button>
+    </form>
+  </div>
+</div>
+</body>
+</html>
