@@ -41,6 +41,15 @@ public class SecurityConfig {
             .anyRequest().authenticated()
     );
 
+    httpSecurity.oauth2Login(
+        configurer -> configurer
+            .redirectionEndpoint(
+                endpointConfig -> endpointConfig
+                    .baseUri("/**/oauth2/code/**")
+            )
+            .defaultSuccessUrl("/")
+    );
+
     httpSecurity.cors(
         configurer -> configurer
             .configurationSource(corsConfigurationSource())
