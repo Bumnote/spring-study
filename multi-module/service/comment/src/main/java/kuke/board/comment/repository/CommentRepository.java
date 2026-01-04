@@ -100,7 +100,7 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
           from comment
           where article_id = :articleId and (
               parent_comment_id > :lastParentCommentId or
-              parent_comment_id = :lastParentCommentId and comment_id > :kastCommentId
+              parent_comment_id = :lastParentCommentId and comment_id > :lastCommentId
               )
           order by parent_comment_id asc, comment_id asc
           limit :limit
