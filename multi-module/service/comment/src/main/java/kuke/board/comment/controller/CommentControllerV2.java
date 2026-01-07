@@ -57,4 +57,8 @@ public class CommentControllerV2 {
     return commentService.readAllInfiniteScroll(articleId, lastPath, pageSize);
   }
 
+  @GetMapping("/articles/{articleId}/count")
+  public Long count(@PathVariable Long articleId) {
+    return commentService.count(articleId);
+  }
 }
