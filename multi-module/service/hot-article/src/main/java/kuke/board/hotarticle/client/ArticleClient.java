@@ -2,6 +2,7 @@ package kuke.board.hotarticle.client;
 
 import jakarta.annotation.PostConstruct;
 import java.time.LocalDateTime;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -35,7 +36,7 @@ public class ArticleClient {
     return null;
   }
 
-
+  @Getter
   public static class ArticleResponse {
 
     private Long articleId;
