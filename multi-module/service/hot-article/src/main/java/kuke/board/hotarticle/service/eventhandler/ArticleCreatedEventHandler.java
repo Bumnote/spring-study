@@ -20,7 +20,7 @@ public class ArticleCreatedEventHandler implements EventHandler<ArticleCreatedEv
     articleCreatedTimeRepository.createOrUpdate(
         payload.getArticleId(),
         payload.getCreatedAt(),
-        TimeCalculatorUtils.calculateDurationToMidnigh()
+        TimeCalculatorUtils.calculateDurationToMidnight()
     );
   }
 

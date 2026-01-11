@@ -20,7 +20,7 @@ public class ArticleLikedEventHandler implements EventHandler<ArticleLikedEventP
     articleLikeCountRepository.createOrUpdate(
         payload.getArticleId(),
         payload.getArticleLikedCount(),
-        TimeCalculatorUtils.calculateDurationToMidnigh()
+        TimeCalculatorUtils.calculateDurationToMidnight()
     );
   }
 

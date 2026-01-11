@@ -20,7 +20,7 @@ public class ArticleViewEventHandler implements EventHandler<ArticleViewedEventP
     articleViewCountRepository.createOrUpdate(
         payload.getArticleId(),
         payload.getArticleViewCount(),
-        TimeCalculatorUtils.calculateDurationToMidnigh()
+        TimeCalculatorUtils.calculateDurationToMidnight()
     );
   }
 

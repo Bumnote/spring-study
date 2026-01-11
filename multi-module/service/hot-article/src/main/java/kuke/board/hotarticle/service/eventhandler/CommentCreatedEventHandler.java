@@ -20,7 +20,7 @@ public class CommentCreatedEventHandler implements EventHandler<CommentCreatedEv
     articleCommentCountRepository.createOrUpdate(
         payload.getArticleId(),
         payload.getArticleCommentCount(),
-        TimeCalculatorUtils.calculateDurationToMidnigh()
+        TimeCalculatorUtils.calculateDurationToMidnight()
     );
   }
 

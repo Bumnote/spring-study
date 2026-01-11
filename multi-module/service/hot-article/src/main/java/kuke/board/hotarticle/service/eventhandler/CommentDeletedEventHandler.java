@@ -20,7 +20,7 @@ public class CommentDeletedEventHandler implements EventHandler<CommentDeletedEv
     articleCommentCountRepository.createOrUpdate(
         payload.getArticleId(),
         payload.getArticleCommentCount(),
-        TimeCalculatorUtils.calculateDurationToMidnigh()
+        TimeCalculatorUtils.calculateDurationToMidnight()
     );
   }
 
