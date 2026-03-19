@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: spring-ai
+
+  # Spring AI Config
+  ai:
+    openai:
+      api-key: ${OPENAI.API-KEY}
+      chat:
+        options:
+          model: gpt-4o
+          temperature: 1.0
+  config:
+    import:
+      - application-secret.yml
