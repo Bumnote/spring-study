@@ -1,5 +1,7 @@
 package example.coupon.entity.issuedCoupon;
 
+import static example.coupon.entity.Status.ACTIVE;
+import static example.coupon.entity.Status.INACTIVE;
 import static jakarta.persistence.FetchType.LAZY;
 import static jakarta.persistence.GenerationType.IDENTITY;
 import static lombok.AccessLevel.PROTECTED;
@@ -7,6 +9,7 @@ import static lombok.AccessLevel.PROTECTED;
 import example.coupon.entity.BaseEntity;
 import example.coupon.entity.Status;
 import example.coupon.entity.coupon.Coupon;
+import example.coupon.exception.type.CouponNotAvailableException;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -49,4 +52,11 @@ public class IssuedCoupon extends BaseEntity {
     this.expiredAt = expiredAt;
   }
 
+  public void use() {
+    if (status != ACTIVE) {
+      throw new CouponNotAvailableException();
+    }
+    status = INACTIVE;
+    usedAt = LocalDateTime.now();
+  }
 }

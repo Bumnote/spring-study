@@ -16,6 +16,6 @@ public class GlobalExceptionHandler {
   protected ResponseEntity<ApiErrorResponse<String>> handleException(CouponException e) {
     ErrorCode errorCode = e.getErrorCode();
     log.warn("CouponException: {}", errorCode, e);
-    return ResponseEntity.status(errorCode.getStatus()).body(ApiErrorResponse.error(errorCode));
+    return ResponseEntity.status(e.getStatus()).body(ApiErrorResponse.error(errorCode));
   }
 }
