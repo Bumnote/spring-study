@@ -2,11 +2,12 @@ package example.coupon.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import example.coupon.entity.CouponType;
-import example.coupon.entity.Status;
-import example.coupon.entity.coupon.Coupon;
-import example.coupon.repository.coupon.CouponRepository;
-import example.coupon.repository.issuedCoupon.IssuedCouponRepository;
+import example.coupon.api.service.coupon.CouponService;
+import example.coupon.common.entity.CouponType;
+import example.coupon.common.entity.Status;
+import example.coupon.domain.coupon.entity.Coupon;
+import example.coupon.domain.coupon.repository.CouponRepository;
+import example.coupon.domain.coupon.repository.IssuedCouponRepository;
 import java.lang.reflect.Field;
 import java.time.LocalDateTime;
 import java.util.concurrent.CountDownLatch;
