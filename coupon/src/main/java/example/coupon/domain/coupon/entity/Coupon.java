@@ -11,6 +11,7 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.Version;
 import java.time.LocalDateTime;
 import lombok.Getter;
 
@@ -35,6 +36,9 @@ public class Coupon extends BaseEntity {
   private Integer validDays;
   private LocalDateTime startDate;
   private LocalDateTime endDate;
+
+  @Version
+  private Long version;
 
   public void issue() {
     if (issuedQuantity >= totalQuantity) {
