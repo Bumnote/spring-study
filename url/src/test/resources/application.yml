@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: url
+
+url:
+  aes:
+    key: 0123456789abcdef0123456789abcdef
+
+logging:
+  level:
+    com.laboratory.url: debug
