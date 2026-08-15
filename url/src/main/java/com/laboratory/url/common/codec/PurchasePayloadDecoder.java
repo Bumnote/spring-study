@@ -49,11 +49,29 @@ public class PurchasePayloadDecoder {
 		return decoded(PayloadFormat.ENCRYPTED, json);
 	}
 
+	/*
+	* 문자열
+	  ↓
+	JSONTokener 생성
+	  ↓
+	JSONObject 파싱
+	  │
+	  ├── 파싱 실패 → null
+	  │
+	  └── 파싱 성공
+			 ↓
+		nextClean()으로
+		남은 문자 확인
+			 │
+			 ├── 없음('\0') → JSONObject 반환
+			 │
+			 └── 있음       → null
+	* */
 	private JSONObject parseOrNull(String value) {
 		try {
 			JSONTokener tokener = new JSONTokener(value);
 			JSONObject json = new JSONObject(tokener);
-			return tokener.nextClean() == 0 ? json : null;
+			return tokener.nextClean() == '\0' ? json : null;
 		} catch (JSONException e) {
 			return null;
 		}
