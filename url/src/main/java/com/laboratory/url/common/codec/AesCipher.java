@@ -32,6 +32,7 @@ public class AesCipher {
 		this.secretKey = new SecretKeySpec(keyBytes, ALGORITHM);
 	}
 
+	// AES 암호화 -> Base64 인코딩 진행
 	public String encryptToBase64(String plainText) {
 		try {
 			byte[] iv = new byte[IV_LENGTH];
@@ -51,6 +52,7 @@ public class AesCipher {
 		}
 	}
 
+	// base64 인코딩된 문자열을 decoding 진행
 	public String decryptFromBase64(String base64) {
 		return decrypt(Base64Codec.decode(base64));
 	}

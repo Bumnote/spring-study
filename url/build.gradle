@@ -25,7 +25,7 @@ dependencies {
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     implementation 'org.springframework.boot:spring-boot-starter-webmvc'
 
-    // JSON — 페이로드가 JSON인지 판별하고 필드를 꺼내는 용도 (org.json.JSONObject)
+    // Json
     implementation 'org.json:json:20250517'
 
     // Lombok
