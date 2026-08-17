@@ -1,5 +1,6 @@
 package example.coupon.api.controller.coupon;
 
+import example.coupon.api.service.lock.LockService;
 import example.coupon.api.service.user.request.UserRequest;
 import example.coupon.api.service.coupon.response.CouponIssueResponse;
 import example.coupon.api.service.coupon.response.CouponResponse;
@@ -23,7 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class CouponController {
 
-  private final CouponService couponService;
+  private final LockService lockservice;
   private final CouponRepository couponRepository;
 
   @GetMapping("/available")
@@ -45,7 +46,7 @@ public class CouponController {
 
   @PostMapping("/{couponId}/issue")
   public ApiSuccessResponse<CouponIssueResponse> issueCoupon(@PathVariable Long couponId, @RequestBody UserRequest request) {
-    CouponIssueResponse couponIssueResponse = couponService.issueCoupon(couponId, request.userId());
+    CouponIssueResponse couponIssueResponse = lockservice.issueCouponWithLock(couponId, request.userId());
     return ApiSuccessResponse.success(couponIssueResponse);
   }
 

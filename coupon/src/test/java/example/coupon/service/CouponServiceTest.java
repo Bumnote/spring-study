@@ -3,6 +3,7 @@ package example.coupon.service;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import example.coupon.api.service.coupon.CouponService;
+import example.coupon.api.service.lock.LockService;
 import example.coupon.common.entity.CouponType;
 import example.coupon.common.entity.Status;
 import example.coupon.domain.coupon.entity.Coupon;
@@ -32,6 +33,9 @@ class CouponServiceTest {
 
   @Autowired
   private CouponRepository couponRepository;
+
+  @Autowired
+  private LockService lockService;
 
   @Autowired
   private IssuedCouponRepository issuedCouponRepository;
@@ -73,8 +77,9 @@ class CouponServiceTest {
         readyLatch.countDown();
         try {
           startLatch.await();
-          couponService.issueCoupon(couponId, userId);
-          log.info("쿠폰 발급 성공 - userId: {}", userId);
+          // couponService.issueCoupon(couponId, userId);
+          lockService.issueCouponWithLock(couponId, userId);
+          // log.info("쿠폰 발급 성공 - userId: {}", userId);
           successCount.incrementAndGet();
         } catch (Exception e) {
           failCount.incrementAndGet();

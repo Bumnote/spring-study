@@ -3,10 +3,10 @@ package example.coupon.api.service.coupon;
 import static example.coupon.common.entity.Status.ACTIVE;
 
 import example.coupon.api.service.coupon.response.CouponIssueResponse;
-import example.coupon.domain.coupon.entity.Coupon;
-import example.coupon.domain.coupon.entity.IssuedCoupon;
 import example.coupon.common.exception.type.CouponNotFoundException;
 import example.coupon.common.exception.type.DuplicateCouponIssueException;
+import example.coupon.domain.coupon.entity.Coupon;
+import example.coupon.domain.coupon.entity.IssuedCoupon;
 import example.coupon.domain.coupon.repository.CouponRepository;
 import example.coupon.domain.coupon.repository.IssuedCouponRepository;
 import java.time.LocalDateTime;
